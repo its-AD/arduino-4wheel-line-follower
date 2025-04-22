@@ -1,0 +1,131 @@
+Arduino 4-Wheel Robot Line Follower - Circuit Connections
+=========================================================
+
+ARDUINO UNO CONNECTIONS:
+------------------------
+Digital Pins:
+- Pin 5 (PWM) -> L293D/L298N ENA (Enable A)
+- Pin 6 (PWM) -> L293D/L298N ENB (Enable B)
+- Pin 7 -> L293D/L298N IN1 (Input 1)
+- Pin 8 -> L293D/L298N IN2 (Input 2)
+- Pin 9 -> L293D/L298N IN3 (Input 3)
+- Pin 10 -> L293D/L298N IN4 (Input 4)
+- Pin 11 -> HC-SR04 TRIG (Trigger)
+- Pin 12 -> HC-SR04 ECHO (Echo)
+
+Analog Pins:
+- A0 -> Left IR Sensor OUT
+- A1 -> Right IR Sensor OUT
+
+Power:
+- 5V -> L293D/L298N VCC (Logic power)
+- 5V -> HC-SR04 VCC
+- 5V -> Left IR Sensor VCC
+- 5V -> Right IR Sensor VCC
+- GND -> L293D/L298N GND
+- GND -> HC-SR04 GND
+- GND -> Left IR Sensor GND
+- GND -> Right IR Sensor GND
+- GND -> Battery GND
+
+L293D/L298N MOTOR DRIVER CONNECTIONS:
+-------------------------------------
+Control Pins:
+- ENA (Enable A) -> Arduino Pin 5 (PWM)
+- ENB (Enable B) -> Arduino Pin 6 (PWM)
+- IN1 (Input 1) -> Arduino Pin 7
+- IN2 (Input 2) -> Arduino Pin 8
+- IN3 (Input 3) -> Arduino Pin 9
+- IN4 (Input 4) -> Arduino Pin 10
+
+Power:
+- VCC (Logic power) -> Arduino 5V
+- VS (Motor power) -> Battery Positive (9V)
+- GND -> Arduino GND and Battery GND
+
+Motor Outputs:
+- OUT1, OUT2 -> Left Side Motors (Motors 1 & 2)
+- OUT3, OUT4 -> Right Side Motors (Motors 3 & 4)
+
+MOTOR CONNECTIONS:
+-----------------
+Left Side (Motors 1 & 2):
+- Motor 1+ -> L293D/L298N OUT1
+- Motor 1- -> L293D/L298N OUT2
+- Motor 2+ -> L293D/L298N OUT2
+- Motor 2- -> L293D/L298N OUT1
+
+Right Side (Motors 3 & 4):
+- Motor 3+ -> L293D/L298N OUT3
+- Motor 3- -> L293D/L298N OUT4
+- Motor 4+ -> L293D/L298N OUT4
+- Motor 4- -> L293D/L298N OUT3
+
+SENSOR CONNECTIONS:
+------------------
+Left IR Sensor:
+- VCC -> Arduino 5V
+- GND -> Arduino GND
+- OUT -> Arduino A0
+
+Right IR Sensor:
+- VCC -> Arduino 5V
+- GND -> Arduino GND
+- OUT -> Arduino A1
+
+HC-SR04 Ultrasonic Sensor:
+- VCC -> Arduino 5V
+- GND -> Arduino GND
+- TRIG -> Arduino Pin 11
+- ECHO -> Arduino Pin 12
+
+POWER SUPPLY:
+------------
+9V Battery:
+- Positive (+) -> L293D/L298N VS (Motor power)
+- Negative (-) -> L293D/L298N GND and Arduino GND
+
+WIRING NOTES:
+------------
+1. Keep power wires (red/black) separate from signal wires when possible
+2. Use thicker gauge wires for motor connections to handle higher current
+3. Add 0.1μF ceramic capacitors across each motor's terminals to reduce noise
+4. Consider adding a power switch between the battery and the circuit
+5. For more stable operation, use a separate battery for the Arduino
+
+MOTOR CONFIGURATION DETAILS:
+--------------------------
+The motors are wired in parallel on each side to increase torque:
+
+Left Side Configuration:
+- Motors 1 & 2 are wired in parallel but with opposite polarity
+- This ensures both motors on the left side rotate in the same direction
+- When OUT1 is HIGH and OUT2 is LOW, both left motors move forward
+
+Right Side Configuration:
+- Motors 3 & 4 are wired in parallel but with opposite polarity
+- This ensures both motors on the right side rotate in the same direction
+- When OUT3 is HIGH and OUT4 is LOW, both right motors move forward
+
+SENSOR POSITIONING:
+-----------------
+IR Sensors:
+- Mount at the front of the robot, pointing downward
+- Height: 2-3 cm from the ground
+- Spacing: 3-4 cm apart (adjust based on line width)
+- Angle: Perpendicular to the ground for best readings
+
+Ultrasonic Sensor:
+- Mount at the front center of the robot
+- Height: Approximately at the middle of expected obstacles
+- Angle: Parallel to the ground, pointing forward
+- Ensure no robot parts obstruct the sensor's view
+
+POWER CONSIDERATIONS:
+-------------------
+- The L293D can handle up to 600mA per channel
+- The L298N can handle up to 2A per channel
+- For higher current motors, use the L298N
+- Ensure your battery can provide sufficient current (at least 1A)
+- A 9V alkaline battery may not provide enough current for extended operation
+- Consider using a LiPo battery pack or multiple AA batteries in series
