@@ -16,8 +16,8 @@
  * - Ultrasonic Sensor: pins 11 (TRIG) and 12 (ECHO)
  * - Motor Driver: pins 5-10
  * 
- * Created: 2023
- * Author: Your Name
+ * Created: 2025
+ * Author: Adil
  * License: MIT
  */
 
