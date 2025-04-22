@@ -8,7 +8,7 @@ This project implements a 4-wheel robot capable of following the borders of a U-
 
 ### Features
 
-- Line following using 2 IR sensors
+- Lane following using 2 IR sensors
 - Obstacle detection and avoidance using ultrasonic sensor
 - Automatic parking at the end of the track
 - Robust navigation algorithm that keeps the robot within track boundaries
